@@ -1,4 +1,4 @@
-# 🎫 Terraform 대규모 티켓팅 플랫폼
+# 🎫 Terraform 기반 고가용성 티켓팅 플랫폼
 
 [![Terraform](https://img.shields.io/badge/Terraform-1.6+-7B42BC?logo=terraform&logoColor=white)](https://www.terraform.io/)
 [![AWS](https://img.shields.io/badge/AWS-Infrastructure-FF9900?logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
