@@ -1,0 +1,28 @@
+# 프로젝트 기본 설정
+project_name = "ticketing"
+environment  = "dev"
+region       = "ap-northeast-2"
+
+# 네트워크 설정
+vpc_cidr = "10.0.0.0/16"
+azs      = ["ap-northeast-2a", "ap-northeast-2c"]
+
+# 데이터베이스 설정
+db_master_username = "admin"
+db_master_password = "YourSecurePassword123!"  # 반드시 변경하세요!
+
+# Auto Scaling 설정
+min_size     = 2
+max_size     = 20
+desired_size = 2
+
+# 모니터링 설정
+alarm_email = "your-email@example.com"  # 알람 수신할 이메일 주소
+
+# 태그
+tags = {
+  Project     = "Ticketing Platform"
+  Owner       = "Your Name"
+  Environment = "Development"
+  Terraform   = "true"
+}
