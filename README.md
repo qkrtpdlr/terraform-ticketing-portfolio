@@ -34,41 +34,41 @@
 ## 🏗️ 시스템 아키텍처
 
 ```
-                     Internet
-                        │
-            ┌───────────▼───────────┐
-            │ Application Load      │
-            │ Balancer (ALB)        │
-            └───────┬───────────────┘
-                    │
-        ┌───────────┴───────────┐
-        │                       │
-    ┌───▼────────┐      ┌──────▼─────┐
-    │  AZ-2a     │      │  AZ-2c     │
-    │            │      │            │
-    │ EC2 Auto   │      │ EC2 Auto   │
-    │ Scaling    │      │ Scaling    │
-    │ (2-20대)   │      │ (2-20대)   │
-    │            │      │            │
-    │ Spring     │      │ Spring     │
-    │ Boot + Redis│     │ Boot + Redis│
-    └────┬───────┘      └──────┬─────┘
-         │                     │
-         └──────────┬──────────┘
-                    │
-         ┌──────────┴──────────┐
-         │                     │
-    ┌────▼─────┐          ┌───▼──────┐
-    │   RDS    │          │ElastiCache│
-    │  Aurora  │          │  Redis    │
-    │  MySQL   │          │           │
-    │          │          │  Primary  │
-    │ Writer + │          │  + Replica│
-    │ Reader   │          │  (Multi-AZ)│
-    └──────────┘          └───────────┘
+                                Internet
+                                   │
+                ┌───────────▼───────────┐
+                │ Application Load                   │
+                │ Balancer (ALB)                     │
+                └───────┬───────────────┘
+                             │
+          ┌───────────┴───────────┐
+          │                                    │
+    ┌───▼────────┐          ┌──────▼─────┐
+    │  AZ-2a            │          │  AZ-2c            │
+    │                   │          │                   │
+    │ EC2 Auto          │          │ EC2 Auto          │
+    │ Scaling           │          │ Scaling           │
+    │ (2-20대)           │          │ (2-20대)          │
+    │                   │          │                   │
+    │ Spring            │          │ Spring            │
+    │ Boot + Redis      │          │ Boot + Redis      │
+    └────┬───────┘          └──────┬─────┘
+            │                                 │
+            └──────────┬──────────┘
+                              │
+            ┌──────────┴──────────┐
+            │                                 │
+    ┌────▼─────┐                  ┌───▼───── ─┐
+    │   RDS          │                  │ElastiCache      │
+    │  Aurora        │                  │  Redis          │
+    │  MySQL         │                  │                 │
+    │                │                  │  Primary        │
+    │ Writer +       │                  │  + Replica      │
+    │ Reader         │                  │  (Multi-AZ)     │
+    └──────────┘                  └───────────┘
 ```
 
-**기술 스택**:
+**기술 스택**: 
 - **IaC**: Terraform 1.6+ (8개 모듈)
 - **Cloud**: AWS (VPC, EC2, ALB, RDS, ElastiCache)
 - **Backend**: Spring Boot 3.1 + Java 17
